@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'flight-app',
@@ -7,4 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent  {
   title = 'Hello World!';
+
+  constructor(router: Router) {
+    //router.config([])
+
+    router.events.subscribe(event => console.debug('event', event));
+
+  }
 }
+
