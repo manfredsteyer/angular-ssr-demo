@@ -17,7 +17,7 @@ import { APP_ROUTES } from './app.routes';
 
 @NgModule({
    imports: [
-      BrowserModule,
+      BrowserModule.withServerTransition({ appId: 'serverApp' }),
       HttpClientModule,
 
       // FlightBookingModule,

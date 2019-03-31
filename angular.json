@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "starter": {
+    "flight-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -11,7 +11,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -21,7 +21,11 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/paper-dashboard.css",
+              "src/assets/css/demo.css",
+              "src/assets/css/themify-icons.css"
             ],
             "scripts": []
           },
@@ -48,18 +52,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "starter:build"
+            "browserTarget": "flight-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "starter:build:production"
+              "browserTarget": "flight-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "starter:build"
+            "browserTarget": "flight-app:build"
           }
         },
         "test": {
@@ -88,6 +92,25 @@
             ],
             "exclude": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "src/tsconfig.server.json",
+            "sourceMap": false
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
         }
       }
     },
@@ -100,7 +123,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "starter:serve"
+            "devServerTarget": "flight-app:serve"
           }
         },
         "lint": {
@@ -115,7 +138,7 @@
       }
     }
   },
-  "defaultProject": "starter",
+  "defaultProject": "flight-app",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
