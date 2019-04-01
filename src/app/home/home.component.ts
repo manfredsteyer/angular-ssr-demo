@@ -14,9 +14,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject (DOCUMENT) private document: HTMLDocument,
-    private location: Location
-    ) { }
+    @Inject (DOCUMENT) private document: HTMLDocument) { }
 
   ngOnInit() {
 

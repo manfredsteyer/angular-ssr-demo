@@ -14,7 +14,7 @@ enableProdMode();
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 const INDEX_FILE = join(DIST_FOLDER, 'index.html');
 
-// * NOTE :: leave this as require() since this file is built Dynamically from webpack
+// NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/server/main');
 
 // Prerender Shell und write it into index.html
