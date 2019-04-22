@@ -2,6 +2,7 @@ import { PLATFORM_ID, Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer, Location } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
+import { PlatformService } from '../shared/platform.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ export class HomeComponent implements OnInit {
   platform = 'unkown';
 
   constructor(
+    private platformService: PlatformService,
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject (DOCUMENT) private document: HTMLDocument) { }
 
@@ -28,6 +30,9 @@ export class HomeComponent implements OnInit {
     } else if (isPlatformServer(this.platformId)) {
       this.platform = 'Server';
     }
+
+    // Alternative: Use seperate services for client and server
+    // this.platform = this.platformService.platformName;
   }
 
 }

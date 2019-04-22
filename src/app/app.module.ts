@@ -15,6 +15,7 @@ import { ErrorComponent } from './error/error.component';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 import { TransferHttpCacheModule } from '@nguniversal/common';
+import { PlatformService, ClientPlatformService } from './shared/platform.service';
 
 @NgModule({
    imports: [
@@ -35,7 +36,9 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
       AboutComponent,
       ErrorComponent
    ],
-   providers: [],
+   providers: [
+    { provide: PlatformService, useClass: ClientPlatformService }
+   ],
    bootstrap: [
       AppComponent
    ]
