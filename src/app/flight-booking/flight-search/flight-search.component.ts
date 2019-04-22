@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from '../../entities/flight';
 import { FlightService } from './flight.service';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+
+const FLIGHTS_STATE_KEY = makeStateKey('flights');
 
 @Component({
   selector: 'flight-search',
@@ -12,9 +15,7 @@ export class FlightSearchComponent implements OnInit {
   from: string;
   to: string;
 
-  get flights() {
-    return this.flightService.flights;
-  }
+  flights: Flight[] = [];
 
   selectedFlight: Flight;
 
@@ -24,16 +25,35 @@ export class FlightSearchComponent implements OnInit {
   };
 
   constructor(
-    private flightService: FlightService) {
+    private flightService: FlightService,
+    private state: TransferState) {
   }
 
   ngOnInit() {
-    this.flightService.load('', '');
+
+    this.flights = this.state.get(FLIGHTS_STATE_KEY, []);
+
+    if (this.flights.length === 0) {
+      this.flightService.find('', '').subscribe(
+        flights => {
+          this.flights = flights;
+          this.state.set(FLIGHTS_STATE_KEY, flights);
+        },
+        err => console.error('err', err)
+      );
+    }
+
   }
 
   search() {
 
-    this.flightService.load(this.from, this.to);
+    this.flightService.find(this.from, this.to).subscribe(
+      flights => {
+        this.flights = flights;
+        this.state.set(FLIGHTS_STATE_KEY, flights);
+      },
+      err => console.error('err', err)
+    );
 
   }
 

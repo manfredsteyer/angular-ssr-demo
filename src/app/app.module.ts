@@ -2,7 +2,7 @@ import { FlightSearchComponent } from './flight-booking/flight-search/flight-sea
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -19,7 +19,7 @@ import { APP_ROUTES } from './app.routes';
    imports: [
       BrowserModule.withServerTransition({ appId: 'serverApp' }),
       HttpClientModule,
-
+      BrowserTransferStateModule,
       // FlightBookingModule,
 
       RouterModule.forRoot(APP_ROUTES, { preloadingStrategy: PreloadAllModules})
