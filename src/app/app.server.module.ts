@@ -8,7 +8,7 @@ import { PlatformService, ServerPlatformService } from './shared/platform.servic
 
 @NgModule({
   imports: [
-    AppModule,
+    AppModule, // <-- Client-side AppModule
     ServerModule,
     ModuleMapLoaderModule,
     ServerTransferStateModule,

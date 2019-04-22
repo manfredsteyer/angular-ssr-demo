@@ -5,7 +5,9 @@
       <h2 class="title">Flight Search</h2>
   </div>
   <div class="content">
-
+  <div>
+    Platform: {{ platform }}
+  </div>
   <form>
 
       <div class="form-group">
@@ -14,7 +16,10 @@
       </div>
       <div class="form-group">
           <label>To:</label>
-          <input [(ngModel)]="to" name="to" class="form-control">
+
+          <input *ngIf="platform === 'CLIENT'" [(ngModel)]="to" name="to" class="form-control">
+
+          <input *ngIf="platform === 'SERVER'"  name="to" class="form-control disabled">
       </div>
 
       <div class="form-group">

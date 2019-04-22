@@ -16,10 +16,13 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { PlatformService, ClientPlatformService } from './shared/platform.service';
+import { PrebootModule } from 'preboot';
 
 @NgModule({
    imports: [
       BrowserModule.withServerTransition({ appId: 'serverApp' }),
+      PrebootModule.withConfig({ appRoot: 'flight-app' }),
+
       HttpClientModule,
 
       // BrowserTransferStateModule,

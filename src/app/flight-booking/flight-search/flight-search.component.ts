@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Flight } from '../../entities/flight';
 import { FlightService } from './flight.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { PlatformService } from '../../shared/platform.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class FlightSearchComponent implements OnInit {
   flights: Flight[] = [];
 
   selectedFlight: Flight;
+  platform = 'unkown';
 
   basket: object = {
     "3": true,
@@ -26,6 +28,7 @@ export class FlightSearchComponent implements OnInit {
   constructor(
     private title: Title,
     private meta: Meta,
+    private platformService: PlatformService,
     private flightService: FlightService) {
   }
 
@@ -42,6 +45,10 @@ export class FlightSearchComponent implements OnInit {
         },
         err => console.error('err', err)
       );
+
+      // Alternative: Use seperate services for client and server
+      this.platform = this.platformService.platformName;
+
   }
 
   search() {

@@ -1,0 +1,9 @@
+
+.disabled {
+  pointer-events: none;
+  background-image: linear-gradient(-90deg, grey, silver);
+  border: 0px;
+  animation-name: ghost;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}

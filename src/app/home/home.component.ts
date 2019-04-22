@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   platform = 'unkown';
 
   constructor(
-    private platformService: PlatformService,
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject (DOCUMENT) private document: HTMLDocument) { }
 
@@ -30,9 +29,6 @@ export class HomeComponent implements OnInit {
     } else if (isPlatformServer(this.platformId)) {
       this.platform = 'Server';
     }
-
-    // Alternative: Use seperate services for client and server
-    // this.platform = this.platformService.platformName;
   }
 
 }
