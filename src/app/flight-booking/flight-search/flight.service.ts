@@ -8,7 +8,6 @@ import { HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
 @Injectable()
 export class DefaultFlightService implements FlightService {
 
-
   constructor(private http: HttpClient) { }
 
   flights: Flight[] = [];
@@ -20,7 +19,7 @@ export class DefaultFlightService implements FlightService {
     );
   }
 
-  find(from: string, to: string): Observable<Flight[]> {
+  find(from: string = '', to: string = ''): Observable<Flight[]> {
     const url = 'http://www.angular.at/api/flight';
 
     const headers = new HttpHeaders().set('Accept', 'application/json');

@@ -14,13 +14,16 @@ import { AboutComponent } from './about/about.component';
 import { ErrorComponent } from './error/error.component';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 
 @NgModule({
    imports: [
       BrowserModule.withServerTransition({ appId: 'serverApp' }),
       HttpClientModule,
-      BrowserTransferStateModule,
-      // FlightBookingModule,
+
+      // BrowserTransferStateModule,
+      TransferHttpCacheModule,
+
 
       RouterModule.forRoot(APP_ROUTES, { preloadingStrategy: PreloadAllModules})
    ],
