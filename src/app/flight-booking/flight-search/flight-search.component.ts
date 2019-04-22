@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from '../../entities/flight';
 import { FlightService } from './flight.service';
+import { Title, Meta } from '@angular/platform-browser';
 
 
 @Component({
@@ -23,10 +24,18 @@ export class FlightSearchComponent implements OnInit {
   };
 
   constructor(
+    private title: Title,
+    private meta: Meta,
     private flightService: FlightService) {
   }
 
   ngOnInit() {
+
+      this.title.setTitle('Flights');
+      this.meta.updateTag({
+          'description': 'The best flights you can find (in our database)'
+      });
+
       this.flightService.find('', '').subscribe(
         flights => {
           this.flights = flights;
